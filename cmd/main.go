@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/joho/godotenv"
 	_ "github.com/lib/pq" // Импортируем драйвер для PostgreSQL
+	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 	"log"
 	"os"
@@ -14,12 +15,13 @@ import (
 )
 
 func main() {
+	logrus.SetFormatter(new(logrus.JSONFormatter))
 	if err := initConfig(); err != nil {
-		log.Fatalf("Error initializing config %s", err.Error())
+		logrus.Fatalf("Error initializing config %s", err.Error())
 	}
 
 	if err := godotenv.Load(); err != nil {
-		log.Fatalf("error loading .env %s", err.Error())
+		logrus.Fatalf("error loading .env %s", err.Error())
 	}
 
 	db, err := repository.NewPostgresDB(repository.Config{
@@ -41,7 +43,7 @@ func main() {
 
 	srv := new(TODOList_REST.Server)
 	if err := srv.Run(viper.GetString("port"), handlers.InitRoutes()); err != nil {
-		log.Fatalf("Error occurred while running server: %s", err.Error())
+		logrus.Fatalf("Error occurred while running server: %s", err.Error())
 	}
 }
 
