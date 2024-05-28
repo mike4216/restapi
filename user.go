@@ -1,4 +1,4 @@
-package TODOList_REST
+package todo_app
 
 type User struct {
 	Id       int    `json:"_" db:"id"`

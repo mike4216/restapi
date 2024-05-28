@@ -7,7 +7,7 @@ import (
 )
 
 func (h *Handler) signUp(c *gin.Context) {
-	var input TODOList_REST.User
+	var input todo_app.User
 	if err := c.BindJSON(&input); err != nil {
 		newErrorResponse(c, http.StatusBadRequest, err.Error())
 		return

@@ -1,4 +1,4 @@
-package TODOList_REST
+package todo_app
 
 import (
 	"context"

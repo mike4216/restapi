@@ -1,8 +1,8 @@
-package TODOList_REST
+package todo_app
 
-type TODOList struct {
+type TodoList struct {
 	Id          int    `json:"id"`
-	Title       string `json:"title"`
+	Title       string `json:"title" binding:"required"`
 	Description string `json:"description"`
 }
 

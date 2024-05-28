@@ -41,7 +41,7 @@ func main() {
 	services := service.NewService(repos)
 	handlers := handler.NewHandler(services)
 
-	srv := new(TODOList_REST.Server)
+	srv := new(todo_app.Server)
 	if err := srv.Run(viper.GetString("port"), handlers.InitRoutes()); err != nil {
 		logrus.Fatalf("Error occurred while running server: %s", err.Error())
 	}
